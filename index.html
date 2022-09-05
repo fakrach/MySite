@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="/dist/style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        #menu-toggle:checked + #menu {
+            display: block;
+        }
+        body{
+            background-color: #333;
+        }
+        
+        #compts a:hover {
+            color: rgb(6, 167, 254);
+        }
+        .title {
+            padding: 12px;
+            border-radius: 6px;
+            background-color: rgb(91, 91, 92);
+            color: black;
+        }
+        .tab {
+            display: none;
+            order: 1;
+            box-shadow: 10px 14px 28px rgba(0,0,0,0.25), 5px 10px 10px rgba(0,0,0,0.22);
+        }
+
+        #barpanel input[type="radio"]:checked + label + .tab {
+            display: block;
+        }
+
+        #barpanel input[type="radio"]:checked + label {
+            background-color: rgb(34 197 94 / var(--tw-bg-opacity));
+            color: white;
+        }
+
+        .skill li{
+            margin: 5px 0;
+            padding: 10px;
+            list-style:none;
+        }
+         
+        .bar{
+            background-color:#333;
+            display: block;
+            height: 20px;
+            border: 1px solid rgba(0,0,0,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        }
+
+        .bar:hover{
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        }
+        
+        .bar span{
+            height: 20px;
+            float: left;
+            background: linear-gradient(134deg,rgb(141, 246, 174)0%, rgb(22, 230, 39)100%);
+        }
+        .html {
+            width: 85%;
+            animation: html 3s;
+        }
+        .php {
+            width: 85%;
+            animation: php 3s;
+        }
+        .css {
+            width: 80%;
+            animation: css 3s;
+        }
+        .javascript {
+            width: 90%;
+            animation: javascript 3s;
+        }
+        .cpp {
+            width: 75%;
+            animation: cpp 3s;
+        }
+
+        @keyframes html{
+            0%{
+                width: 0%;
+            }
+            100%{
+                width: 85%;
+            }
+        }
+
+        @keyframes css{
+            0%{
+                width: 0%;
+            }
+            100%{
+                width: 80%;
+            }
+        }
+
+        @keyframes php{
+            0%{
+                width: 0%;
+            }
+            100%{
+                width: 90%;
+            }
+        }
+
+        @keyframes cpp{
+            0%{
+                width: 0%;
+            }
+            100%{
+                width: 75%;
+            }
+        }
+
+        @keyframes javascript{
+            0%{
+                width: 0%;
+            }
+            100%{
+                width: 90%;
+            }
+        }
+
+
+        .role{
+            position: relative;
+            color: #1f212d;
+            font-size: 50px;
+            font-weight: 700;
+            -webkit-text-stoke: 0.3vw #e4dff0;
+            text-transform: uppercase;
+        }
+
+        @media (max-width:580px){
+            .role{
+                font-size: 30px;
+            }
+        }
+        .role::before{
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            color: #01fe87;
+            -webkit-text-stroke: 0vw #e4dff0;
+            border-right: 2px solid #01fe87;
+            overflow: hidden;
+            animation: animate 5s linear infinite;
+        }
+
+        @keyframes animate
+        {
+            0%,10%,100%
+            {
+                width: 0;
+            }70%,90%
+            {
+                width: 100%;
+            }
+        }
+        
+        .main {
+            margin-top: 40px;
+        }
+
+        .case{
+            width: 400px;
+            height: 300px;
+            text-align: center;
+            background-color:#333;
+            margin: 12px;
+            margin: 25px;
+            position: relative;
+            border:#01fe87 solid 1px;
+            border-radius: 8px;
+            transition: all 1s;
+        }
+        .case:hover{
+            height: 420px;
+        }
+       
+        .case img{
+            width: 250px;
+            height: 250px;
+            position: absolute;
+            top: -30px;
+            left: 70px;
+            border-radius: 8px;
+            z-index: 999;
+            transition: all 1s;
+        }
+        .case:hover img{
+            border-radius: 50%;
+        }
+        .case p{
+            opacity: 0;
+            position: absolute;
+            bottom: 80px;
+            transition: all 1s;
+        }
+        .case:hover p{
+           opacity: 1;
+        }
+        .case h2{
+            position: absolute;
+            bottom: 30px;
+            left: 150px;
+            font-weight: 700;
+            color: #01fe87;
+        }
+ 
+        #item div{
+            margin: 16px;
+            padding: 10px;
+            color: white;
+            background-color: #333;
+            border-radius: 5px;
+            box-shadow: 10px 6px 18px #01fe87, 5px 16px 8px rgba(111, 109, 109, 0.22);
+        }
+
+        .myform{
+            background-color: #252839;
+            width: 70%;
+            height: 500px;
+            box-shadow: 10px 14px 28px rgba(175, 173, 173, 0.25), 5px 10px 10px rgba(0, 0, 0, 0.22);
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .myform input {
+            background-color: #252839;
+            width: 80%;
+            height: 50px;
+            border-bottom: #01fe87 solid 1px;
+            border-radius: 8px;
+            padding-left: 12px;
+        }
+        .myform textarea {
+            background-color: #252839;
+            width: 80%;
+            height: 120px;
+            border-bottom: #01fe87 solid 1px;
+            border-radius: 8px;
+            padding-left: 12px;
+            margin-top: 20px;
+        }
+        .myform button{
+            width: 30%;
+            height: 50px;
+            border: #01fe87 solid 1px;
+            border-radius: 5px;
+        }
+
+        .myform button:hover{
+            color: #01fe87;
+        }
+
+      
+    </style>
+    <title>Jihad Fakrach</title>
+</head>
+<body class=" text-white">
+
+    <header class="bg-black" id="header">
+        <div class="container mx-auto  w-full lg:px-12 xl:px-16 py-3 pt-5 flex justify-between flex-wrap flex-grow">
+            <div class="capitalize text-3xl flex ">
+                <img src="image/profie_photo.jpg" alt="pofile photo" class="rounded-full" width="35px" height="35px">
+                <a href="#"><span style="color: #01fe87 ;" class="font-bold ml-2 hover:text-white">jihad</span></a>
+            </div>
+            <label for="menu-toggle" class="block md:hidden cursor-pointer self-center mr-2">
+                <svg class="fill-current text-white"
+                xmlns="http://www.w3.org/2000/svg" width="30" height="25"
+                viewBox="0 0 20 20">
+                <title>menu</title>
+                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+                </svg>
+            </label>
+            <input type="checkbox" class="hidden" id="menu-toggle">
+            <div class="hidden w-full text-center md:flex md:flex-grow md:w-auto" id="menu">
+                <ul class="md:pt-0 md:flex md:flex-grow md:justify-center">
+                    <li class=" py-2 mx-3 lg:mx-6 hover:text-green-500"><a href="#header">Home</a></li>
+                    <li class=" py-2 mx-3 lg:mx-6 hover:text-green-500"><a href="#about">About</a></li>
+                    <li class=" py-2 mx-3 lg:mx-6  hover:text-green-500"><a href="#"> Serveces</a></li>
+                    <li class=" py-2 mx-3 lg:mx-6 hover:text-green-500"><a href="#projects">Projects</a></li>
+                    <li class=" py-2 mx-3 lg:mx-6 hover:text-green-500"><a href="#contacts">Contacts</a></li>
+                    
+                </ul>
+                <div class="pt-5 text-1xl md:pt-2 flex">
+                    <div style="color: #01fe87 ;" class="px-1 pb-1 hidden md:block">
+                        <a href="https://www.linkedin.com/in/jihad-fakrach/" class="hover:text-white">Ln</a>
+                        <a href="https://github.com/fakrach" class="hover:text-white">Gt</a>
+                        <a href="#" class="hover:text-white">Tw</a>
+                    </div>
+                    
+                </div>
+                <i class="fa-solid fa-circle-half-stroke text-3xl pl-2 pt-1 hover:text-white text-green-500"></i>
+            </div>
+        </div>
+
+        <div style="background-color: #161616;" class="container mx-auto pt-12 xl:px-16 lg:px-12 md:px-6 px-5 py-3 pt-15 flex flex-wrap">
+            <div class="w-full md:w-2/3 pt-28 flex-grow">
+                <h2 class="font-medium text-gray-400 capitalize pb-2">hello to my world</h2>
+                <h1 class="font-bold text-3xl capitalize">i'm Jihad Fakrach</h1> 
+                <span data-text="Software_engineer" class="role">Software engineer</span>
+                <p class=" text-gray-300 pt-5 text-xl">
+                    Web Developers design and update websites and online applications using various programming languages and design tools.
+                     A regular example resume for this job mentions responsibilities such as creating webpage layouts, writing code,
+                      editing website content, and making adjustments based on client feedback. 
+                </p>
+                <div class="pt-8">
+                    <button class="bg-green-400 w-full md:w-1/2 lg:w-1/4 h-12 rounded-full capitalize hover:bg-black hover:text-white hover:border-solid hover:border-2 hover:border-white">view projects</button>
+                    <button class="w-full mt-3 md:w-1/4 lg:w-1/6  h-12 rounded-full capitalize bg-white hover:bg-black  hover:text-white hover:border-solid hover:border-2 hover:border-white text-black md:mt-0 md:ml-4">here me</button>
+                </div>
+
+                <div id="compts" class="text-center text-3xl py-5 lg:text-left lg:pl-10 lg:pt-5 ">
+                    <h3 class="text-base text-gray-400 capitalize">know more about me</h3>
+                    <div class="pt-4 pl-2">
+                        <a href="#"><i class="fa-brands fa-github"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 lg:w-1/3 h-2/3 flex justify-center flex-grow ">
+                <img src="image/photo-removebg-preview.png" alt="main photo">
+            </div>
+        </div>
+    </header>
+    
+    <section id="about" >
+       <div class="container mx-auto  w-full lg:px-12 xl:px-16 py-3 pt-5 flex justify-center flex-grow flex-wrap">
+            <div class="w-full lg:w-1/2 flex justify-center">
+                <div style="text-align: center; background-color: #01fe87 ; border-radius: 15px 100px"class=" m-20 rounded-3xl md:w-2/3 lg:w-4/5 xl:w-2/3 flex justify-center md:m-12">
+                    <img src="image/photo-removebg-preview.png" alt="">
+                </div>
+            </div>
+            <div class="w-full lg:w-1/2 " id="tabpanel">
+                <div class="w-full mt-12">
+                    <h1 style="color: #01fe87 ;" class="text-2xl font-semibold">I'M A DEVELOPER</h1>
+                    <h1 class="text-7xl font-bold mt-1">I Develop Ideas That Help People</h1>
+                    <p class="mt-4 text-gray-300 font-bold">
+                        I am Web developer able to build a Web presence from the ground up - from concept, navigation, layout and programming to UX and SEO. Skilled at writing well-designed, testable and efficient code using current best practices in Web development. Fast learner, hard worker and team player who is proficient in an array of scripting languages and multimedia Web tools.
+                    </p>
+                </div>
+                <div id="barpanel" class="w-full text-center flex flex-wrap justify-center mt-8">
+                    <input class="hidden" type="radio" id="tab1" checked="checked" name="tabpanel">
+                    <label class="title w-5/4 mx-1 md:mx-4 md:w-1/4" style="color: #01fe87 ;" for="tab1">MY DETAILS</label>
+                    <div  class=" tab w-full">
+                        <div class="md:flex block lg:justify-end md:flex-grow">
+                            <div class="mx-2 my-8 w-1/2">
+                                <div>
+                                    <label class="text-gray-400 pr-24"> My name:</label>
+                                    <h1 class="text-white font-semibold pr-16">jihad fakrach</h1>
+                                </div>
+                                <div>
+                                    <label class="text-gray-400 pr-24"> My Email::</label>
+                                    <h1 class="text-white font-semibold">Jhfakrach@gmail.com</h1>
+                                </div>
+                                <div>
+                                    <label class="text-gray-400 pr-24"> Language:</label>
+                                    <h1 class="text-white font-semibold">Arabic, English, French</h1>
+                                </div>
+    
+                            </div>
+                            <div class="mx-2 my-8 md:text-left  w-1/2 ">
+                                <div>
+                                    <label class="text-gray-400 "> My Phone No:</label>
+                                    <h1 class="text-white font-semibold  ">+212 639972287</h1>
+                                </div>
+                                <div>
+                                    <label class="text-gray-400  "> My Address:</label>
+                                    <h1 class="text-white font-semibold capitalize ">ait ourir merrakech morroco</h1>
+                                </div>
+                                <div>
+                                    <label class="text-gray-400  "> My Nationality:</label>
+                                    <h1 class="text-white font-semibold capitalize">morrocain</h1>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <input class="hidden" type="radio" id="tab2"  name="tabpanel">
+                    <label class="title w-5/4 mx-1 md:mx-4 md:w-1/4" style="color: #01fe87 ;" for="tab2">MY SKILLS</label>
+                    <div  class=" tab w-full">
+                        <div class="skill flex flex-wrap w-full">
+                            <li class="w-full md:w-1/2"><h3>php</h3>
+                                <span class="bar"><span class="php"></span></span>
+                            </li>
+                            <li class="w-full md:w-1/2"><h3>javascript</h3>
+                                <span class="bar"><span class="javascript"></span></span>
+                            </li>
+                            <li class="w-full md:w-1/2"><h3>css</h3>
+                                <span class="bar"><span class="css"></span></span>
+                            </li>
+                            <li class="w-full md:w-1/2"><h3>html</h3>
+                                <span class="bar"><span class="html"></span></span>
+                            </li>
+                            <li class="w-full md:w-full"><h3>c++</h3>
+                                <span class="bar"><span class="cpp"></span></span>
+                            </li>
+                        </div>
+                        
+                    </div>
+
+
+
+                    <input class="hidden" type="radio" id="tab3" name="tabpanel">
+                    <label class="title w-5/4 mx-1 md:mx-4 md:w-1/4" style="color: #01fe87 ;" for="tab3">FRAMEWORKS</label>
+                    <div class=" tab  w-full">
+                        <div class="flex ">
+                           <div class="w-1/3 my-8">
+                            <span class="flex justify-center"><img src="image/985px-Laravel.svg.png" width="120px" alt="laravel"></span>
+                                <h2 class="text-2xl font-bold">Laravel 9</h2>
+                           </div>
+                           <div class="w-1/3 my-8">
+                            <span class="flex justify-center"><img src="image/react.png" width="120px" alt="react"></span>
+                                <h2 class="text-2xl font-bold">React js</h2>
+                           </div>
+                           <div class="w-1/3 my-8">
+                            <span class="flex justify-center"><img src="image/tailwind.png" width="120px" alt="tailwind css"></span>
+                                <h2 class="text-2xl font-bold">Tailwind css</h2>
+                           </div>
+
+                        </div>
+                        
+                    </div>
+
+
+
+                </div>
+            </div>
+       </div>
+    </section>
+
+    <section style="background-color: black;" id="projects">
+        <div class="container mx-auto  w-full lg:px-12 xl:px-16 py-3 pt-5 flex justify-center flex-grow flex-wrap">
+            <div class="w-full text-center my-12">
+                <h1 style="color:#01fe87;" class="text-4xl font-bold p-6">my projects</h1>
+            </div>
+            <div class="main flex flex-wrap justify-center my-10">
+                <div class="case">
+                    <img src="image/hotel.jpg" alt="hotel">
+                    <h1>hotel siteweb</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                         Eligendi ipsum saepe rem, corrupti iure in, qui minima aliquid aspernatur fugit tempore unde tenetur,
+                         architecto nisi dolorem recusandae nihil quos amet!</p>
+                    <h2>hotel siteweb</h2>
+                </div>
+                <div class="case">
+                    <img src="image/hotel.jpg" alt="hotel">
+                    <h1>hotel siteweb</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                         Eligendi ipsum saepe rem, corrupti iure in, qui minima aliquid aspernatur fugit tempore unde tenetur,
+                         architecto nisi dolorem recusandae nihil quos amet!</p>
+                         <h2>hotel siteweb</h2>
+                </div>
+                <div class="case">
+                    <img src="image/hotel.jpg" alt="hotel">
+                    <h1>hotel siteweb</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                         Eligendi ipsum saepe rem, corrupti iure in, qui minima aliquid aspernatur fugit tempore unde tenetur,
+                         architecto nisi dolorem recusandae nihil quos amet!</p>
+                    <h2>hotel siteweb</h2>
+                </div>
+
+                <div class="case">
+                    <img src="image/hotel.jpg" alt="hotel">
+                    <h1>hotel siteweb</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                         Eligendi ipsum saepe rem, corrupti iure in, qui minima aliquid aspernatur fugit tempore unde tenetur,
+                         architecto nisi dolorem recusandae nihil quos amet!</p>
+                    <h2>hotel siteweb</h2>
+                </div>
+                <div class="case">
+                    <img src="image/hotel.jpg" alt="hotel">
+                    <h1>hotel siteweb</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                         Eligendi ipsum saepe rem, corrupti iure in, qui minima aliquid aspernatur fugit tempore unde tenetur,
+                         architecto nisi dolorem recusandae nihil quos amet!</p>
+                         <h2>hotel siteweb</h2>
+                </div>
+                <div class="case">
+                    <img src="image/hotel.jpg" alt="hotel">
+                    <h1>hotel siteweb</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                         Eligendi ipsum saepe rem, corrupti iure in, qui minima aliquid aspernatur fugit tempore unde tenetur,
+                         architecto nisi dolorem recusandae nihil quos amet!</p>
+                    <h2>hotel siteweb</h2>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contacts" class="bg-black">
+        <div class="container mx-auto pt-12 xl:px-16 lg:px-12 md:px-6 px-5 py-3 pt-15 flex flex-wrap justify-center flex-grow">
+            <div class="w-full text-center p-12 ">
+                <h1 style="color:#01fe87;" class="text-4xl font-bold ">Contact me</h1>
+            </div>
+            <div class="lg:w-1/2 w-full" >
+                <div style="margin-top: 150px; margin-bottom: 100px; margin-left: 16px;">
+                    <h1 class="text-5xl font-bold">Let’s work together</h1>
+                    <h3 class="text-3xl font-semibold text-gray-300 mt-6">Get in touch with me</h3>
+                    <p class="font-mediam pt-4">I’m interested in freelance opportunities – especially ambitious or large
+                        projects. <br>
+                         However, if you have other request or question, don’t hesitate to use
+                        the form.
+                    </p>
+                    <div style="color: #01fe87 ;" class="text-center md:text-left my-6">
+                        <a href="https://www.linkedin.com/in/jihad-fakrach/" class="hover:text-white ml-2 text-3xl"> <i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://github.com/fakrach" class="hover:text-white ml-2 text-3xl"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="hover:text-white ml-2 text-3xl"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:w-1/2 w-full flex justify-center" >
+                <form class="myform flex flex-wrap justify-center">
+                    <input type="text" placeholder="Enter Your Name">
+                    <input type="text" placeholder="Enter Email Address" >
+                    <input type="text" placeholder="Subject" >
+                    <textarea name="text" id="text" cols="30" rows="10" placeholder="Write me a message"></textarea>
+                    <button>Send</button>
+                </form>
+            </div>
+        </div>
+    </section>
+   
+</body>
+</html>
